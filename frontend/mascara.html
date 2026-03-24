@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MÃ¡scara do Registro</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    .mascara-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .mascara-topo .btn {
+      width: auto;
+    }
+
+    .painel-mascara {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .linha-info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .grid-producao-mascara {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .coluna-mascara {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .coluna-mascara h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      color: #17384a;
+    }
+
+    .grid-extra {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .grid-perdas-mascara {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+   .cards-resumo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+    .lista-prioridades,
+    .lista-perdas {
+      display: grid;
+      gap: 10px;
+    }
+
+    .item-lista {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .item-lista .rotulo {
+      font-size: 13px;
+      font-weight: 700;
+      color: #4d6574;
+      margin-bottom: 4px;
+    }
+
+    .item-lista .texto {
+      font-size: 14px;
+      color: #1f2f39;
+      min-height: 18px;
+      white-space: pre-wrap;
+    }
+
+    .info-box {
+      background: #f8fbfd;
+      border: 1px solid #d9e4ea;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .info-box .titulo {
+      font-size: 12px;
+      font-weight: 700;
+      color: #5b7280;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .info-box .valor {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e313d;
+      word-break: break-word;
+    }
+
+    .secao-mascara {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+      border: 1px solid #dbe3ea;
+    }
+
+    .secao-mascara h2 {
+      margin-bottom: 16px;
+      color: #17384a;
+      font-size: 22px;
+    }
+
+    .secao-verde {
+      border-left: 8px solid #2f8f66;
+      background: #f3fbf6;
+    }
+
+    .secao-laranja {
+      border-left: 8px solid #d98545;
+      background: #fff5ef;
+    }
+
+    .secao-azul {
+      border-left: 8px solid #8fc4dc;
+      background: #eef7fb;
+    }
+
+    .secao-amarela {
+      border-left: 8px solid #e1c400;
+      background: #fffbe2;
+    }
+.acoes-topo-mascara {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+   
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="mascara-topo">
+      <div>
+        <h1>GRD DIÃRIA - OPERAÃ‡ÃƒO</h1>
+      </div>
+      <div class="acoes-topo-mascara">
+  <button class="btn btn-limpar" type="button" onclick="exportarImagem()">
+    Exportar Imagem
+  </button>
+  <button class="btn btn-limpar" type="button" onclick="window.print()">
+    Imprimir
+  </button>
+</div>
+    </div>
+
+    <div class="painel-mascara">
+
+      <!-- IDENTIFICAÃ‡ÃƒO -->
+      <section class="secao-mascara bloco-cabecalho">
+        <h2>IdentificaÃ§Ã£o da ReuniÃ£o</h2>
+
+        <div class="linha-info">
+          <div class="info-box">
+            <div class="titulo">Data ReuniÃ£o</div>
+            <div class="valor" id="mDataReuniao">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Dia da ReuniÃ£o</div>
+            <div class="valor" id="mDiaReuniao">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Data Analisada</div>
+            <div class="valor" id="mDataAnalisada">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Dia Analisado</div>
+            <div class="valor" id="mDiaAnalisado">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">U.O</div>
+            <div class="valor" id="mUO">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Processo</div>
+            <div class="valor" id="mProcesso">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Participante</div>
+            <div class="valor" id="mParticipante">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">FunÃ§Ã£o</div>
+            <div class="valor" id="mFuncao">-</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- D-1 PRODUÃ‡ÃƒO -->
+      <section class="secao-mascara secao-laranja">
+        <h2>D-1 - ProduÃ§Ã£o</h2>
+
+        <div class="grid-producao-mascara">
+          <div class="coluna-mascara">
+            <h3>WM</h3>
+
+            <div class="info-box">
+              <div class="titulo">US Programada WM</div>
+              <div class="valor" id="mUsProgramadaWm">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">US Realizada WM</div>
+              <div class="valor" id="mUsRealizadaWm">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Desvio (+/-) WM</div>
+              <div class="valor" id="mDesvioWm">-</div>
+            </div>
+          </div>
+
+          <div class="coluna-mascara">
+            <h3>LT</h3>
+
+            <div class="info-box">
+              <div class="titulo">US Programada LT</div>
+              <div class="valor" id="mUsProgramadaLt">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">US Realizada LT</div>
+              <div class="valor" id="mUsRealizadaLt">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Desvio (+/-) LT</div>
+              <div class="valor" id="mDesvioLt">-</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-extra">
+          <div class="info-box">
+            <div class="titulo">Complemento a ser lanÃ§ado</div>
+            <div class="valor" id="mComplementoLancado">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">MF (US DIA) >= 0,90</div>
+            <div class="valor" id="mMfUsDia">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">MT (US DIA) >= 0,33</div>
+            <div class="valor" id="mMtUsDia">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Equipes D (MOTO)</div>
+            <div class="valor" id="mEquipesDMoto">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Equipes D (EQUIPE)</div>
+            <div class="valor" id="mEquipesDEquipe">-</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- D-1 FORÃ‡A + PERDAS -->
+      <div class="cards-resumo">
+        <section class="secao-mascara secao-azul">
+          <h2>D-1 - ForÃ§a de Trabalho</h2>
+
+          <div class="linha-info">
+            <div class="info-box">
+              <div class="titulo">Equipe OrÃ§ada</div>
+              <div class="valor" id="mEquipeOrcadaD1">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Equipe Total</div>
+              <div class="valor" id="mEquipeTotalD1">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Equipe Programada</div>
+              <div class="valor" id="mEquipeProgramadaD1">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Equipe Efetiva</div>
+              <div class="valor" id="mEquipeEfetivaD1">-</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="secao-mascara secao-amarela">
+          <h2>D-1 - Principais Perdas</h2>
+
+          <div class="grid-perdas-mascara">
+            <div class="info-box">
+              <div class="titulo">Plataforma (Qtd. Eqp.)</div>
+              <div class="valor" id="mPlataformaQtdEqp">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Plataforma (Hora Liberada)</div>
+              <div class="texto" id="mPlataformaHoraLiberada">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Almoxarifado (Qtd. Eqp.)</div>
+              <div class="valor" id="mAlmoxarifadoQtdEqp">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Almoxarifado (Hora LiberaÃ§Ã£o Ãšlt. Eqp)</div>
+              <div class="texto" id="mAlmoxarifadoHoraLiberacao">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">AbsenteÃ­smo Atestado</div>
+              <div class="valor" id="mAbsenteismoAtestadoQtd">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">PrevisÃ£o Retorno Atestado</div>
+              <div class="texto" id="mPrevisaoRetornoAtestadoD1">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">AbsenteÃ­smo Falta</div>
+              <div class="valor" id="mAbsenteismoFaltaQtd">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Motivo Falta</div>
+              <div class="texto" id="mMotivoFaltaD1">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Oficina (Qtd. Eqp.)</div>
+              <div class="valor" id="mOficinaQtdD1">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="titulo">Oficina (Hora LiberaÃ§Ã£o)</div>
+              <div class="texto" id="mOficinaHoraLiberacaoD1">-</div>
+            </div>
+          </div>
+
+          <div class="lista-perdas" style="margin-top: 16px;">
+            <div class="item-lista">
+              <div class="rotulo">Motivo de perda 1</div>
+              <div class="texto" id="mMotivoPerda1">-</div>
+            </div>
+
+            <div class="item-lista">
+              <div class="rotulo">Motivo de perda 2</div>
+              <div class="texto" id="mMotivoPerda2">-</div>
+            </div>
+
+            <div class="item-lista">
+              <div class="rotulo">Motivo de perda 3</div>
+              <div class="texto" id="mMotivoPerda3">-</div>
+            </div>
+
+            <div class="item-lista">
+              <div class="rotulo">Motivo de perda 4</div>
+              <div class="texto" id="mMotivoPerda4">-</div>
+            </div>
+
+            <div class="item-lista">
+              <div class="rotulo">Motivo de perda 5</div>
+              <div class="texto" id="mMotivoPerda5">-</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- DIA DE HOJE -->
+      <section class="secao-mascara secao-verde">
+        <h2>Dia de Hoje - Foco do Dia</h2>
+
+        <div class="linha-info" style="margin-bottom: 18px;">
+          <div class="info-box">
+            <div class="titulo">Equipe Programada</div>
+            <div class="valor" id="mEquipeProgramadaHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Equipe Prevista</div>
+            <div class="valor" id="mEquipePrevistaHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Atestado (Qtde.)</div>
+            <div class="valor" id="mAtestadoQtdHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Atestado (PrevisÃ£o de Retorno)</div>
+            <div class="valor" id="mAtestadoPrevisaoRetornoHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Falta</div>
+            <div class="valor" id="mFaltaHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Motivo</div>
+            <div class="texto" id="mMotivoFaltaHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Oficina (Qtd. Eqp.)</div>
+            <div class="valor" id="mOficinaQtdHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Oficina (PrevisÃ£o de LiberaÃ§Ã£o)</div>
+            <div class="texto" id="mOficinaPrevisaoLiberacaoHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Treinamento (Qtde.)</div>
+            <div class="valor" id="mTreinamentoQtdHoje">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="titulo">Treinamento (Finalidade)</div>
+            <div class="texto" id="mTreinamentoFinalidadeHoje">-</div>
+          </div>
+        </div>
+
+        <div class="lista-prioridades">
+          <div class="item-lista">
+            <div class="rotulo">Foco / Prioridade do dia 1</div>
+            <div class="texto" id="mFocoPrioridade1">-</div>
+          </div>
+
+          <div class="item-lista">
+            <div class="rotulo">Foco / Prioridade do dia 2</div>
+            <div class="texto" id="mFocoPrioridade2">-</div>
+          </div>
+
+          <div class="item-lista">
+            <div class="rotulo">Foco / Prioridade do dia 3</div>
+            <div class="texto" id="mFocoPrioridade3">-</div>
+          </div>
+
+          <div class="item-lista">
+            <div class="rotulo">Foco / Prioridade do dia 4</div>
+            <div class="texto" id="mFocoPrioridade4">-</div>
+          </div>
+
+          <div class="item-lista">
+            <div class="rotulo">Foco / Prioridade do dia 5</div>
+            <div class="texto" id="mFocoPrioridade5">-</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+ <script>
+  const API_URL = "http://localhost:3001/api/registros";
+
+  function valorOuTraco(valor) {
+    return valor !== null && valor !== undefined && String(valor).trim() !== ""
+      ? valor
+      : "-";
+  }
+
+  function formatarData(data) {
+    if (!data) return "-";
+    const d = new Date(data);
+    if (isNaN(d.getTime())) return data;
+    return d.toLocaleDateString("pt-BR");
+  }
+
+  async function exportarImagem() {
+    try {
+      const painel = document.querySelector(".painel-mascara");
+
+      if (!painel) {
+        alert("NÃ£o foi possÃ­vel localizar a mÃ¡scara.");
+        return;
+      }
+
+      const canvas = await html2canvas(painel, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        windowWidth: document.body.scrollWidth,
+        windowHeight: document.body.scrollHeight
+      });
+
+      const link = document.createElement("a");
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id") || "registro";
+
+      link.download = `mascara-registro-${id}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (erro) {
+      console.error("Erro ao exportar imagem:", erro);
+      alert("Erro ao exportar imagem.");
+    }
+  }
+
+  async function carregarMascara() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (!id) {
+      alert("ID do registro nÃ£o informado.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_URL}/${id}`);
+      const item = await res.json();
+
+      document.getElementById("mDataReuniao").textContent = formatarData(item.data_reuniao);
+      document.getElementById("mDiaReuniao").textContent = valorOuTraco(item.dia_reuniao);
+      document.getElementById("mDataAnalisada").textContent = formatarData(item.data_analisada);
+      document.getElementById("mDiaAnalisado").textContent = valorOuTraco(item.dia_analisado);
+      document.getElementById("mUO").textContent = valorOuTraco(item.uo);
+      document.getElementById("mProcesso").textContent = valorOuTraco(item.processo);
+      document.getElementById("mParticipante").textContent = valorOuTraco(item.participante);
+      document.getElementById("mFuncao").textContent = valorOuTraco(item.funcao);
+
+      document.getElementById("mUsProgramadaWm").textContent = valorOuTraco(item.us_programada_wm);
+      document.getElementById("mUsRealizadaWm").textContent = valorOuTraco(item.us_realizada_wm);
+      document.getElementById("mDesvioWm").textContent = valorOuTraco(item.desvio_wm);
+      document.getElementById("mUsProgramadaLt").textContent = valorOuTraco(item.us_programada_lt);
+      document.getElementById("mUsRealizadaLt").textContent = valorOuTraco(item.us_realizada_lt);
+      document.getElementById("mDesvioLt").textContent = valorOuTraco(item.desvio_lt);
+      document.getElementById("mComplementoLancado").textContent = valorOuTraco(item.complemento_lancado);
+      document.getElementById("mMfUsDia").textContent = valorOuTraco(item.mf_us_dia);
+      document.getElementById("mMtUsDia").textContent = valorOuTraco(item.mt_us_dia);
+      document.getElementById("mEquipesDMoto").textContent = valorOuTraco(item.equipes_d_moto);
+      document.getElementById("mEquipesDEquipe").textContent = valorOuTraco(item.equipes_d_equipe);
+
+      document.getElementById("mEquipeOrcadaD1").textContent = valorOuTraco(item.equipe_orcada_d1);
+      document.getElementById("mEquipeTotalD1").textContent = valorOuTraco(item.equipe_total_d1);
+      document.getElementById("mEquipeProgramadaD1").textContent = valorOuTraco(item.equipe_programada_d1);
+      document.getElementById("mEquipeEfetivaD1").textContent = valorOuTraco(item.equipe_efetiva_d1);
+
+      document.getElementById("mPlataformaQtdEqp").textContent = valorOuTraco(item.plataforma_qtd_eqp);
+      document.getElementById("mPlataformaHoraLiberada").textContent = valorOuTraco(item.plataforma_hora_liberada);
+      document.getElementById("mAlmoxarifadoQtdEqp").textContent = valorOuTraco(item.almoxarifado_qtd_eqp);
+      document.getElementById("mAlmoxarifadoHoraLiberacao").textContent = valorOuTraco(item.almoxarifado_hora_liberacao);
+      document.getElementById("mAbsenteismoAtestadoQtd").textContent = valorOuTraco(item.absenteismo_atestado_qtd);
+      document.getElementById("mPrevisaoRetornoAtestadoD1").textContent = valorOuTraco(item.previsao_retorno_atestado_d1);
+      document.getElementById("mAbsenteismoFaltaQtd").textContent = valorOuTraco(item.absenteismo_falta_qtd);
+      document.getElementById("mMotivoFaltaD1").textContent = valorOuTraco(item.motivo_falta_d1);
+      document.getElementById("mOficinaQtdD1").textContent = valorOuTraco(item.oficina_qtd_d1);
+      document.getElementById("mOficinaHoraLiberacaoD1").textContent = valorOuTraco(item.oficina_hora_liberacao_d1);
+      document.getElementById("mMotivoPerda1").textContent = valorOuTraco(item.motivo_perda_1);
+      document.getElementById("mMotivoPerda2").textContent = valorOuTraco(item.motivo_perda_2);
+      document.getElementById("mMotivoPerda3").textContent = valorOuTraco(item.motivo_perda_3);
+      document.getElementById("mMotivoPerda4").textContent = valorOuTraco(item.motivo_perda_4);
+      document.getElementById("mMotivoPerda5").textContent = valorOuTraco(item.motivo_perda_5);
+
+      document.getElementById("mEquipeProgramadaHoje").textContent = valorOuTraco(item.equipe_programada_hoje);
+      document.getElementById("mEquipePrevistaHoje").textContent = valorOuTraco(item.equipe_prevista_hoje);
+      document.getElementById("mAtestadoQtdHoje").textContent = valorOuTraco(item.atestado_qtd_hoje);
+      document.getElementById("mAtestadoPrevisaoRetornoHoje").textContent = valorOuTraco(item.atestado_previsao_retorno_hoje);
+      document.getElementById("mFaltaHoje").textContent = valorOuTraco(item.falta_hoje);
+      document.getElementById("mMotivoFaltaHoje").textContent = valorOuTraco(item.motivo_falta_hoje);
+      document.getElementById("mOficinaQtdHoje").textContent = valorOuTraco(item.oficina_qtd_hoje);
+      document.getElementById("mOficinaPrevisaoLiberacaoHoje").textContent = valorOuTraco(item.oficina_previsao_liberacao_hoje);
+      document.getElementById("mTreinamentoQtdHoje").textContent = valorOuTraco(item.treinamento_qtd_hoje);
+      document.getElementById("mTreinamentoFinalidadeHoje").textContent = valorOuTraco(item.treinamento_finalidade_hoje);
+
+      document.getElementById("mFocoPrioridade1").textContent = valorOuTraco(item.foco_prioridade_1);
+      document.getElementById("mFocoPrioridade2").textContent = valorOuTraco(item.foco_prioridade_2);
+      document.getElementById("mFocoPrioridade3").textContent = valorOuTraco(item.foco_prioridade_3);
+      document.getElementById("mFocoPrioridade4").textContent = valorOuTraco(item.foco_prioridade_4);
+      document.getElementById("mFocoPrioridade5").textContent = valorOuTraco(item.foco_prioridade_5);
+    } catch (erro) {
+      console.error("Erro ao carregar mÃ¡scara:", erro);
+      alert("Erro ao carregar o registro.");
+    }
+  }
+
+  carregarMascara();
+</script>
+</body>
+</html>
