@@ -3,55 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GRD Diária - Operação</title>
+  <title>GRD Diaria - Operacao</title>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
   <div class="container">
     <header class="topo">
-      <h1>GRD DIÁRIA - OPERAÇÃO</h1>
+      <div class="topo-barra">
+        <div>
+          <h1>GRD DIARIA - OPERACAO</h1>
+          <p id="statusAcesso">Validando sessao...</p>
+        </div>
+        <div class="topo-acoes">
+          <div id="usuarioLogado" class="usuario-logado" aria-live="polite"></div>
+          <button type="button" id="btnAbrirRegistros" class="btn btn-topo">Registros salvos</button>
+          <button type="button" id="btnLogout" class="btn btn-topo btn-sair">Sair</button>
+        </div>
+      </div>
     </header>
 
     <form id="formRegistro" class="formulario">
-
       <section class="bloco bloco-cabecalho">
-        <h2>Identificação da Reunião</h2>
+        <h2>Identificacao da reuniao</h2>
 
         <div class="grid grid-4">
           <div class="campo">
             <label for="uo">U.O</label>
-            <select type="text" id="uo" name="uo" required />
-            <option value="">Selecione</option>
-             <option value="284">284</option>
+            <select id="uo" name="uo" required>
+              <option value="">Selecione</option>
+              <option value="284">284</option>
               <option value="286">286</option>
             </select>
           </div>
 
           <div class="campo">
-            <label for="processo">PROCESSO</label>
-            <select type="text" id="processo" name="processo" required />
-            <option value="">Selecione</option>
-            <option value="OAMI - MOTO">OAMI - MOTO</option>
+            <label for="processo">Processo</label>
+            <select id="processo" name="processo" required>
+              <option value="">Selecione</option>
+              <option value="OAMI - MOTO">OAMI - MOTO</option>
               <option value="CORTE - RELIGA">CORTE - RELIGA</option>
-              <option value="LIGAÇÃO">LIGAÇÃO</option>
-              <option value="EMERGÊNCIAL">EMERGÊNCIAL</option>
+              <option value="LIGACAO">LIGACAO</option>
+              <option value="EMERGENCIAL">EMERGENCIAL</option>
               <option value="GERAL CE-BE">GERAL CE-BE</option>
               <option value="GERAL BE-SL">GERAL BE-SL</option>
               <option value="OAMI - MULTI">OAMI - MULTI</option>
               <option value="RALF DA SILVA">RALF DA SILVA</option>
-              <option value="INSPEÇÃO">INSPEÇÃO</option>
-              </select>
-
+              <option value="INSPECAO">INSPECAO</option>
+            </select>
           </div>
 
           <div class="campo">
-            <label for="participante">PARTICIPANTE</label>
-            <select type="text" id="participante" name="participante" required />
-            <option value="">Selecione</option>
+            <label for="participante">Participante</label>
+            <select id="participante" name="participante" required>
+              <option value="">Selecione</option>
               <option value="CINTIA DEMARIA ALVES">CINTIA DEMARIA ALVES</option>
               <option value="CLEYDIVAN NASCIMENTO SILVA">CLEYDIVAN NASCIMENTO SILVA</option>
               <option value="GILBERTO RODRIGO SILVA PAULO">GILBERTO RODRIGO SILVA PAULO</option>
-              <option value="LUIZ LAN A DE SOUZA PINTO">LUIZ LAN A DE SOUZA PINTO</option>
+              <option value="LUIZ LANA DE SOUZA PINTO">LUIZ LANA DE SOUZA PINTO</option>
               <option value="MARCONI CESAR TEIXEIRA JUNIOR">MARCONI CESAR TEIXEIRA JUNIOR</option>
               <option value="MARCOS GIOVANE OLIVEIRA PINHEIRO">MARCOS GIOVANE OLIVEIRA PINHEIRO</option>
               <option value="OTAVIO BARBOSA DE SOUZA">OTAVIO BARBOSA DE SOUZA</option>
@@ -62,99 +70,81 @@
           </div>
 
           <div class="campo">
-            <label for="funcao">FUNÇÃO</label>
-            <select type="text" id="funcao" name="funcao" required>
-            <option value="">Selecione</option>
-              <option value="Supervisor">SUPERVISOR</option>
+            <label for="funcao">Funcao</label>
+            <select id="funcao" name="funcao" required>
+              <option value="">Selecione</option>
+              <option value="Supervisor">Supervisor</option>
             </select>
           </div>
 
           <div class="campo">
-            <label for="data_analisada">Data Analisada</label>
+            <label for="data_analisada">Data analisada</label>
             <input type="date" id="data_analisada" name="data_analisada" required />
           </div>
 
           <div class="campo">
-            <label for="dia_analisado">Dia Analisado</label>
-            <select id="dia_analisado" name="dia_analisado" required>
-              <option value="">Selecione</option>
-              <option value="SEGUNDA-FEIRA">SEGUNDA-FEIRA</option>
-              <option value="TERÇA-FEIRA">TERÇA-FEIRA</option>
-              <option value="QUARTA-FEIRA">QUARTA-FEIRA</option>
-              <option value="QUINTA-FEIRA">QUINTA-FEIRA</option>
-              <option value="SEXTA-FEIRA">SEXTA-FEIRA</option>
-              <option value="SÁBADO">SÁBADO</option>
-              <option value="DOMINGO">DOMINGO</option>
-            </select>
+            <label for="dia_analisado">Dia analisado</label>
+            <input type="text" id="dia_analisado" name="dia_analisado" readonly required />
           </div>
 
           <div class="campo">
-            <label for="data_reuniao">Data Reunião</label>
+            <label for="data_reuniao">Data da reuniao</label>
             <input type="date" id="data_reuniao" name="data_reuniao" required />
           </div>
 
           <div class="campo">
-            <label for="dia_reuniao">Dia da Reunião</label>
-            <select id="dia_reuniao" name="dia_reuniao" required>
-              <option value="">Selecione</option>
-              <option value="SEGUNDA-FEIRA">SEGUNDA-FEIRA</option>
-              <option value="TERÇA-FEIRA">TERÇA-FEIRA</option>
-              <option value="QUARTA-FEIRA">QUARTA-FEIRA</option>
-              <option value="QUINTA-FEIRA">QUINTA-FEIRA</option>
-              <option value="SEXTA-FEIRA">SEXTA-FEIRA</option>
-              <option value="SÁBADO">SÁBADO</option>
-              <option value="DOMINGO">DOMINGO</option>
-            </select>
+            <label for="dia_reuniao">Dia da reuniao</label>
+            <input type="text" id="dia_reuniao" name="dia_reuniao" readonly required />
           </div>
         </div>
       </section>
 
       <section class="bloco bloco-d1">
-        <h2>Dia Anterior (D-1)</h2>
+        <h2>Dia anterior (D-1)</h2>
 
         <div class="cards-d1">
           <div class="card-d1 laranja">
-            <h3>Produção</h3>
+            <h3>Producao</h3>
 
             <div class="grid-producao">
               <div class="coluna-producao">
                 <div class="campo">
-                  <label for="us_programada_wm">US Programada WM</label>
+                  <label for="us_programada_wm">US programada WM</label>
                   <input type="number" step="0.01" id="us_programada_wm" name="us_programada_wm" />
                 </div>
 
                 <div class="campo">
-                  <label for="us_realizada_wm">US Realizada WM</label>
+                  <label for="us_realizada_wm">US realizada WM</label>
                   <input type="number" step="0.01" id="us_realizada_wm" name="us_realizada_wm" />
                 </div>
 
                 <div class="campo">
                   <label for="desvio_wm">Desvio (+/-) WM</label>
-                  <input type="number" step="0.01" id="desvio_wm" name="desvio_wm" />
+                  <input type="number" step="0.01" id="desvio_wm" name="desvio_wm" readonly />
                 </div>
               </div>
 
               <div class="coluna-producao">
                 <div class="campo">
-                  <label for="us_programada_lt">US Programada LT</label>
+                  <label for="us_programada_lt">US programada LT</label>
                   <input type="number" step="0.01" id="us_programada_lt" name="us_programada_lt" />
                 </div>
 
                 <div class="campo">
-                  <label for="us_realizada_lt">US Realizada LT</label>
+                  <label for="us_realizada_lt">US realizada LT</label>
                   <input type="number" step="0.01" id="us_realizada_lt" name="us_realizada_lt" />
                 </div>
 
                 <div class="campo">
                   <label for="desvio_lt">Desvio (+/-) LT</label>
-                  <input type="number" step="0.01" id="desvio_lt" name="desvio_lt" />
+                  <input type="number" step="0.01" id="desvio_lt" name="desvio_lt" readonly />
                 </div>
               </div>
             </div>
 
             <div class="grid-producao-extra">
               <div class="campo">
-                <label for="complemento_lancado">Complemento a ser lançado</label>
+                <label for="complemento_lancado">Complemento a ser lancado</label>
                 <input type="text" id="complemento_lancado" name="complemento_lancado" />
               </div>
 
@@ -169,77 +159,77 @@
               </div>
 
               <div class="campo">
-                <label for="equipes_d_moto">Equipes D (MOTO)</label>
+                <label for="equipes_d_moto">Equipes D (moto)</label>
                 <input type="number" id="equipes_d_moto" name="equipes_d_moto" />
               </div>
 
               <div class="campo">
-                <label for="equipes_d_equipe">Equipes D (EQUIPE)</label>
+                <label for="equipes_d_equipe">Equipes D (equipe)</label>
                 <input type="number" id="equipes_d_equipe" name="equipes_d_equipe" />
               </div>
             </div>
           </div>
 
           <div class="card-d1 azul">
-            <h3>Força de Trabalho</h3>
+            <h3>Forca de trabalho</h3>
 
             <div class="campo">
-              <label for="equipe_orcada_d1">Equipe Orçada</label>
+              <label for="equipe_orcada_d1">Equipe orcada</label>
               <input type="number" id="equipe_orcada_d1" name="equipe_orcada_d1" />
             </div>
 
             <div class="campo">
-              <label for="equipe_total_d1">Equipe Total</label>
+              <label for="equipe_total_d1">Equipe total</label>
               <input type="number" id="equipe_total_d1" name="equipe_total_d1" />
             </div>
 
             <div class="campo">
-              <label for="equipe_programada_d1">Equipe Programada</label>
+              <label for="equipe_programada_d1">Equipe programada</label>
               <input type="number" id="equipe_programada_d1" name="equipe_programada_d1" />
             </div>
 
             <div class="campo">
-              <label for="equipe_efetiva_d1">Equipe Efetiva</label>
+              <label for="equipe_efetiva_d1">Equipe efetiva</label>
               <input type="number" id="equipe_efetiva_d1" name="equipe_efetiva_d1" />
             </div>
           </div>
 
           <div class="card-d1 amarelo">
-            <h3>Principais Perdas</h3>
+            <h3>Principais perdas</h3>
 
             <div class="grid-perdas">
               <div class="campo">
-                <label for="plataforma_qtd_eqp">Plataforma (Qtd. Eqp.)</label>
+                <label for="plataforma_qtd_eqp">Plataforma (qtd. eqp.)</label>
                 <input type="number" id="plataforma_qtd_eqp" name="plataforma_qtd_eqp" />
               </div>
 
               <div class="campo">
-                <label for="plataforma_hora_liberada">Plataforma (Liberação)</label>
+                <label for="plataforma_hora_liberada">Plataforma (liberacao)</label>
                 <input type="text" id="plataforma_hora_liberada" name="plataforma_hora_liberada" />
               </div>
 
               <div class="campo">
-                <label for="almoxarifado_qtd_eqp">Almoxarifado (Qtd. Eqp.)</label>
+                <label for="almoxarifado_qtd_eqp">Almoxarifado (qtd. eqp.)</label>
                 <input type="number" id="almoxarifado_qtd_eqp" name="almoxarifado_qtd_eqp" />
               </div>
 
               <div class="campo">
-                <label for="almoxarifado_hora_liberacao">Almoxarifado (Liberação)</label>
+                <label for="almoxarifado_hora_liberacao">Almoxarifado (liberacao)</label>
                 <input type="text" id="almoxarifado_hora_liberacao" name="almoxarifado_hora_liberacao" />
               </div>
 
               <div class="campo">
-                <label for="absenteismo_atestado_qtd">Atestado (Qtd. Eqp)</label>
+                <label for="absenteismo_atestado_qtd">Atestado (qtd. eqp.)</label>
                 <input type="number" id="absenteismo_atestado_qtd" name="absenteismo_atestado_qtd" />
               </div>
 
               <div class="campo">
-                <label for="previsao_retorno_atestado_d1">Previsão Retorno</label>
+                <label for="previsao_retorno_atestado_d1">Previsao de retorno</label>
                 <input type="text" id="previsao_retorno_atestado_d1" name="previsao_retorno_atestado_d1" />
               </div>
 
               <div class="campo">
-                <label for="absenteismo_falta_qtd">Falta (Qtd. Eqp)</label>
+                <label for="absenteismo_falta_qtd">Falta (qtd. eqp.)</label>
                 <input type="number" id="absenteismo_falta_qtd" name="absenteismo_falta_qtd" />
               </div>
 
@@ -249,12 +239,12 @@
               </div>
 
               <div class="campo">
-                <label for="oficina_qtd_d1">Oficina (Qtd. Eqp.)</label>
+                <label for="oficina_qtd_d1">Oficina (qtd. eqp.)</label>
                 <input type="number" id="oficina_qtd_d1" name="oficina_qtd_d1" />
               </div>
 
               <div class="campo">
-                <label for="oficina_hora_liberacao_d1">Oficina (Hora Liberação)</label>
+                <label for="oficina_hora_liberacao_d1">Oficina (hora liberacao)</label>
                 <input type="text" id="oficina_hora_liberacao_d1" name="oficina_hora_liberacao_d1" />
               </div>
             </div>
@@ -290,26 +280,26 @@
       </section>
 
       <section class="bloco bloco-verde">
-        <h2>Dia de Hoje - Foco do Dia</h2>
+        <h2>Dia de hoje - Foco do dia</h2>
 
         <div class="grid grid-3">
           <div class="campo">
-            <label for="equipe_programada_hoje">Equipe Programada</label>
+            <label for="equipe_programada_hoje">Equipe programada</label>
             <input type="number" id="equipe_programada_hoje" name="equipe_programada_hoje" />
           </div>
 
           <div class="campo">
-            <label for="equipe_prevista_hoje">Equipe Prevista</label>
+            <label for="equipe_prevista_hoje">Equipe prevista</label>
             <input type="number" id="equipe_prevista_hoje" name="equipe_prevista_hoje" />
           </div>
 
           <div class="campo">
-            <label for="atestado_qtd_hoje">Atestado (Qtde.)</label>
+            <label for="atestado_qtd_hoje">Atestado (qtde.)</label>
             <input type="number" id="atestado_qtd_hoje" name="atestado_qtd_hoje" />
           </div>
 
           <div class="campo">
-            <label for="atestado_previsao_retorno_hoje">Atestado (Previsão de Retorno)</label>
+            <label for="atestado_previsao_retorno_hoje">Atestado (previsao de retorno)</label>
             <input type="text" id="atestado_previsao_retorno_hoje" name="atestado_previsao_retorno_hoje" />
           </div>
 
@@ -324,121 +314,133 @@
           </div>
 
           <div class="campo">
-            <label for="oficina_qtd_hoje">Oficina (Qtd. Eqp.)</label>
+            <label for="oficina_qtd_hoje">Oficina (qtd. eqp.)</label>
             <input type="number" id="oficina_qtd_hoje" name="oficina_qtd_hoje" />
           </div>
 
           <div class="campo">
-            <label for="oficina_previsao_liberacao_hoje">Oficina (Previsão de Liberação)</label>
+            <label for="oficina_previsao_liberacao_hoje">Oficina (previsao de liberacao)</label>
             <input type="text" id="oficina_previsao_liberacao_hoje" name="oficina_previsao_liberacao_hoje" />
           </div>
 
           <div class="campo">
-            <label for="treinamento_qtd_hoje">Treinamento (Qtde.)</label>
+            <label for="treinamento_qtd_hoje">Treinamento (qtde.)</label>
             <input type="number" id="treinamento_qtd_hoje" name="treinamento_qtd_hoje" />
           </div>
 
           <div class="campo">
-            <label for="treinamento_finalidade_hoje">Treinamento (Finalidade)</label>
+            <label for="treinamento_finalidade_hoje">Treinamento (finalidade)</label>
             <input type="text" id="treinamento_finalidade_hoje" name="treinamento_finalidade_hoje" />
           </div>
 
           <div class="campo campo-full">
-            <label for="foco_prioridade_1">Foco/Prioridade do dia 1</label>
+            <label for="foco_prioridade_1">Foco/prioridade do dia 1</label>
             <input type="text" id="foco_prioridade_1" name="foco_prioridade_1" />
           </div>
 
           <div class="campo campo-full">
-            <label for="foco_prioridade_2">Foco/Prioridade do dia 2</label>
+            <label for="foco_prioridade_2">Foco/prioridade do dia 2</label>
             <input type="text" id="foco_prioridade_2" name="foco_prioridade_2" />
           </div>
 
           <div class="campo campo-full">
-            <label for="foco_prioridade_3">Foco/Prioridade do dia 3</label>
+            <label for="foco_prioridade_3">Foco/prioridade do dia 3</label>
             <input type="text" id="foco_prioridade_3" name="foco_prioridade_3" />
           </div>
 
           <div class="campo campo-full">
-            <label for="foco_prioridade_4">Foco/Prioridade do dia 4</label>
+            <label for="foco_prioridade_4">Foco/prioridade do dia 4</label>
             <input type="text" id="foco_prioridade_4" name="foco_prioridade_4" />
           </div>
 
           <div class="campo campo-full">
-            <label for="foco_prioridade_5">Foco/Prioridade do dia 5</label>
+            <label for="foco_prioridade_5">Foco/prioridade do dia 5</label>
             <input type="text" id="foco_prioridade_5" name="foco_prioridade_5" />
           </div>
         </div>
       </section>
 
       <section class="acoes-formulario">
-        <button type="submit" class="btn btn-salvar">Salvar Registro</button>
-        <button type="reset" class="btn btn-limpar">Limpar Formulário</button>
+        <button type="submit" class="btn btn-salvar">Salvar registro</button>
+        <button type="reset" class="btn btn-limpar">Limpar formulario</button>
       </section>
     </form>
 
-    <section class="bloco bloco-listagem">
-      <h2>Registros Salvos</h2>
-
-     <div class="filtros">
-
-  <div class="campo">
-    <label for="filtroDia">Filtrar por dia</label>
-    <select id="filtroDia">
-      <option value="">Todos</option>
-      <option value="SEGUNDA-FEIRA">SEGUNDA-FEIRA</option>
-      <option value="TERÇA-FEIRA">TERÇA-FEIRA</option>
-      <option value="QUARTA-FEIRA">QUARTA-FEIRA</option>
-      <option value="QUINTA-FEIRA">QUINTA-FEIRA</option>
-      <option value="SEXTA-FEIRA">SEXTA-FEIRA</option>
-      <option value="SÁBADO">SÁBADO</option>
-      <option value="DOMINGO">DOMINGO</option>
-    </select>
   </div>
 
-  <div class="campo">
-    <label for="filtroProcesso">Filtrar por processo</label>
-    <input type="text" id="filtroProcesso" placeholder="Digite o processo">
-  </div>
+  <div id="modalRegistros" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <section class="modal-conteudo" role="dialog" aria-modal="true" aria-labelledby="tituloModalRegistros">
+      <div class="modal-topo">
+        <h2 id="tituloModalRegistros">Registros salvos</h2>
+        <button type="button" id="btnFecharRegistros" class="btn btn-fechar-modal">Fechar</button>
+      </div>
 
-  <div class="campo">
-    <label for="filtroUO">Filtrar por UO</label>
-    <select id="filtroUO">
-      <option value="">Todas</option>
-      <option value="284">284</option>
-      <option value="286">286</option>
-    </select>
-  </div>
+      <div class="filtros filtros-4">
+        <div class="campo">
+          <label for="filtroDia">Filtrar por dia</label>
+          <select id="filtroDia">
+            <option value="">Todos</option>
+            <option value="SEGUNDA-FEIRA">SEGUNDA-FEIRA</option>
+            <option value="TERCA-FEIRA">TERCA-FEIRA</option>
+            <option value="QUARTA-FEIRA">QUARTA-FEIRA</option>
+            <option value="QUINTA-FEIRA">QUINTA-FEIRA</option>
+            <option value="SEXTA-FEIRA">SEXTA-FEIRA</option>
+            <option value="SABADO">SABADO</option>
+            <option value="DOMINGO">DOMINGO</option>
+          </select>
+        </div>
 
-  <div class="campo">
-    <label for="filtroSupervisor">Filtrar por Supervisor</label>
-    <select id="filtroSupervisor">
-      <option value="">Todos</option>
-      <option value="JOAO">JOAO</option>
-      <option value="MARIA">MARIA</option>
-      <option value="CARLOS">CARLOS</option>
-    </select>
-  </div>
+        <div class="campo">
+          <label for="filtroProcesso">Filtrar por processo</label>
+          <input type="text" id="filtroProcesso" placeholder="Digite o processo" />
+        </div>
 
-  <div class="campo campo-botao">
-    <label>&nbsp;</label>
-    <button type="button" id="btnFiltrar" class="btn">Filtrar</button>
-  </div>
+        <div class="campo">
+          <label for="filtroUO">Filtrar por U.O</label>
+          <select id="filtroUO">
+            <option value="">Todas</option>
+            <option value="284">284</option>
+            <option value="286">286</option>
+          </select>
+        </div>
 
-</div>
+        <div class="campo">
+          <label for="filtroParticipante">Filtrar por participante</label>
+          <select id="filtroParticipante">
+            <option value="">Todos</option>
+            <option value="CINTIA DEMARIA ALVES">CINTIA DEMARIA ALVES</option>
+            <option value="CLEYDIVAN NASCIMENTO SILVA">CLEYDIVAN NASCIMENTO SILVA</option>
+            <option value="GILBERTO RODRIGO SILVA PAULO">GILBERTO RODRIGO SILVA PAULO</option>
+            <option value="LUIZ LANA DE SOUZA PINTO">LUIZ LANA DE SOUZA PINTO</option>
+            <option value="MARCONI CESAR TEIXEIRA JUNIOR">MARCONI CESAR TEIXEIRA JUNIOR</option>
+            <option value="MARCOS GIOVANE OLIVEIRA PINHEIRO">MARCOS GIOVANE OLIVEIRA PINHEIRO</option>
+            <option value="OTAVIO BARBOSA DE SOUZA">OTAVIO BARBOSA DE SOUZA</option>
+            <option value="RALF DA SILVA">RALF DA SILVA</option>
+            <option value="WASHINGTON LEMES DO NASCIMENTO">WASHINGTON LEMES DO NASCIMENTO</option>
+            <option value="RENAN SILVA SANTOS MACHADO">RENAN SILVA SANTOS MACHADO</option>
+          </select>
+        </div>
+
+        <div class="campo campo-botao">
+          <label>&nbsp;</label>
+          <button type="button" id="btnFiltrar" class="btn">Filtrar</button>
+        </div>
+      </div>
 
       <div class="tabela-wrapper">
         <table>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Data Reunião</th>
-              <th>Dia Reunião</th>
-              <th>Data Analisada</th>
-              <th>Dia Analisado</th>
+              <th>Data reuniao</th>
+              <th>Dia reuniao</th>
+              <th>Data analisada</th>
+              <th>Dia analisado</th>
               <th>U.O</th>
               <th>Processo</th>
               <th>Participante</th>
-              <th>Ação</th>
+              <th>Acao</th>
             </tr>
           </thead>
           <tbody id="tabelaRegistros"></tbody>
@@ -446,7 +448,6 @@
       </div>
     </section>
   </div>
-
   <script src="./js/script.js"></script>
 </body>
 </html>

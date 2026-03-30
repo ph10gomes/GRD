@@ -10,7 +10,6 @@ async function criarRegistro(dados) {
     "processo",
     "participante",
     "funcao",
-
     "us_programada_wm",
     "us_realizada_wm",
     "desvio_wm",
@@ -22,12 +21,10 @@ async function criarRegistro(dados) {
     "mt_us_dia",
     "equipes_d_moto",
     "equipes_d_equipe",
-
     "equipe_orcada_d1",
     "equipe_total_d1",
     "equipe_programada_d1",
     "equipe_efetiva_d1",
-
     "plataforma_qtd_eqp",
     "plataforma_hora_liberada",
     "almoxarifado_qtd_eqp",
@@ -43,7 +40,6 @@ async function criarRegistro(dados) {
     "motivo_perda_3",
     "motivo_perda_4",
     "motivo_perda_5",
-
     "equipe_programada_hoje",
     "equipe_prevista_hoje",
     "atestado_qtd_hoje",
@@ -70,7 +66,6 @@ async function criarRegistro(dados) {
     dados.processo,
     dados.participante,
     dados.funcao,
-
     dados.us_programada_wm || null,
     dados.us_realizada_wm || null,
     dados.desvio_wm || null,
@@ -82,12 +77,10 @@ async function criarRegistro(dados) {
     dados.mt_us_dia || null,
     dados.equipes_d_moto || null,
     dados.equipes_d_equipe || null,
-
     dados.equipe_orcada_d1 || null,
     dados.equipe_total_d1 || null,
     dados.equipe_programada_d1 || null,
     dados.equipe_efetiva_d1 || null,
-
     dados.plataforma_qtd_eqp || null,
     dados.plataforma_hora_liberada || null,
     dados.almoxarifado_qtd_eqp || null,
@@ -103,7 +96,6 @@ async function criarRegistro(dados) {
     dados.motivo_perda_3 || null,
     dados.motivo_perda_4 || null,
     dados.motivo_perda_5 || null,
-
     dados.equipe_programada_hoje || null,
     dados.equipe_prevista_hoje || null,
     dados.atestado_qtd_hoje || null,
@@ -122,12 +114,7 @@ async function criarRegistro(dados) {
   ];
 
   const placeholders = colunas.map(() => "?").join(", ");
-
-  const sql = `
-    INSERT INTO registros (
-      ${colunas.join(", ")}
-    ) VALUES (${placeholders})
-  `;
+  const sql = `INSERT INTO registros (${colunas.join(", ")}) VALUES (${placeholders})`;
 
   const [result] = await db.execute(sql, valores);
   return result;
@@ -152,26 +139,33 @@ async function listarRegistros(filtros = {}) {
   const params = [];
 
   if (filtros.dia_analisado) {
-    sql += ` AND dia_analisado = ?`;
+    sql += " AND dia_analisado = ?";
     params.push(filtros.dia_analisado);
   }
 
   if (filtros.processo) {
-    sql += ` AND processo LIKE ?`;
+    sql += " AND processo LIKE ?";
     params.push(`%${filtros.processo}%`);
   }
 
-  sql += ` ORDER BY data_reuniao DESC, id DESC`;
+  if (filtros.uo) {
+    sql += " AND uo = ?";
+    params.push(filtros.uo);
+  }
+
+  if (filtros.participante) {
+    sql += " AND participante = ?";
+    params.push(filtros.participante);
+  }
+
+  sql += " ORDER BY data_reuniao DESC, id DESC";
 
   const [rows] = await db.execute(sql, params);
   return rows;
 }
 
 async function buscarPorId(id) {
-  const [rows] = await db.execute(
-    `SELECT * FROM registros WHERE id = ?`,
-    [id]
-  );
+  const [rows] = await db.execute("SELECT * FROM registros WHERE id = ?", [id]);
   return rows[0];
 }
 

@@ -25,6 +25,22 @@ body {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
+.topo-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.topo-acoes {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .topo h1 {
   font-size: 30px;
   margin-bottom: 8px;
@@ -33,6 +49,15 @@ body {
 .topo p {
   font-size: 15px;
   opacity: 0.95;
+}
+
+.usuario-logado {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .formulario {
@@ -133,6 +158,32 @@ body {
   box-shadow: 0 0 0 3px rgba(11, 90, 120, 0.12);
 }
 
+.campo input[readonly] {
+  background: #f4f8fb;
+  cursor: default;
+}
+
+.desvio-positivo {
+  border-color: #2f8f66 !important;
+  background: #eefaf3 !important;
+  color: #1d6b4b !important;
+  font-weight: 700;
+}
+
+.desvio-negativo {
+  border-color: #c94b49 !important;
+  background: #fff1f1 !important;
+  color: #a2302f !important;
+  font-weight: 700;
+}
+
+.desvio-neutro {
+  border-color: #c8d3dc !important;
+  background: #f4f8fb !important;
+  color: #22333d !important;
+  font-weight: 700;
+}
+
 .campo textarea {
   min-height: 110px;
   resize: vertical;
@@ -215,13 +266,37 @@ body {
   color: #233744;
 }
 
+.btn-topo {
+  background: #ffffff;
+  color: #0b5a78;
+}
+
+.btn-fechar-modal {
+  background: #dfe6eb;
+  color: #233744;
+}
+
+.btn:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-sair {
+  background: #d94d45;
+  color: #fff;
+}
+
 .filtros {
   display: grid;
-  grid-template-columns: 1fr 1fr 180px;
   gap: 16px;
   margin-top: 10px;
   margin-bottom: 18px;
   align-items: end;
+}
+
+.filtros-4 {
+  grid-template-columns: repeat(4, minmax(180px, 1fr)) 180px;
 }
 
 .campo-botao {
@@ -240,6 +315,51 @@ body {
   width: 100%;
   overflow-x: auto;
   border-radius: 10px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 25, 34, 0.55);
+}
+
+.modal-conteudo {
+  position: relative;
+  width: min(1200px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+.modal-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.modal-topo h2 {
+  margin: 0;
+  color: #17384a;
 }
 
 table {
@@ -292,6 +412,7 @@ hr {
   background: #dde5ea;
   margin: 20px 0;
 }
+
 .grid-producao {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -311,6 +432,7 @@ hr {
   gap: 16px;
   margin-top: 20px;
 }
+
 .grid-perdas {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -325,20 +447,6 @@ hr {
   margin-top: 20px;
 }
 
-@media (max-width: 768px) {
-  .grid-perdas {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .grid-producao,
-  .grid-producao-extra {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* RESPONSIVO */
 @media (max-width: 1200px) {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
@@ -346,6 +454,10 @@ hr {
 
   .cards-d1 {
     grid-template-columns: 1fr;
+  }
+
+  .filtros-4 {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
   }
 }
 
@@ -362,6 +474,19 @@ hr {
     font-size: 22px;
   }
 
+  .topo-barra,
+  .modal-topo {
+    align-items: stretch;
+  }
+
+  .topo-acoes {
+    justify-content: stretch;
+  }
+
+  .usuario-logado {
+    text-align: center;
+  }
+
   .bloco {
     padding: 16px;
   }
@@ -369,7 +494,10 @@ hr {
   .grid-2,
   .grid-3,
   .grid-4,
-  .filtros {
+  .grid-producao,
+  .grid-producao-extra,
+  .grid-perdas,
+  .filtros-4 {
     grid-template-columns: 1fr;
   }
 
@@ -379,6 +507,14 @@ hr {
 
   .btn {
     width: 100%;
+  }
+
+  .modal {
+    padding: 12px;
+  }
+
+  .modal-conteudo {
+    padding: 18px;
   }
 
   table {

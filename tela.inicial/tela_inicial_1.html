@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | GRD</title>
+    <link rel="stylesheet" href="/login-assets/tela_inicial_1.css">
+</head>
+<body>
+    <div class="weather-container">
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div><div></div>
+    </div>
+
+    <div class="titulo-erp">ERP NCSR</div>
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <p class="login-subtitle">Entre com seus dados corretamente para acessar o sistema.</p>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+            <p id="loginMessage" style="display:none; margin-top: 12px; color: #ffe9a8; font-size: 14px;"></p>
+
+            <div class="login-options">
+                <label>
+                    <input type="checkbox" name="remember"> Manter sessao
+                </label>
+                <span class="forgot">Acesso restrito</span>
+            </div>
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-top">
+            <img src="/login-assets/img/logo.NCSR.jpg" alt="NCSR ENERGIA" class="footer-logo">
+            <div class="footer-center">
+                <div class="footer-compromisso">
+                    Nosso compromisso esta com a entrega, seguranca e reducao do CHI
+                </div>
+                <div class="footer-nome" id="p2">NCSR ENERGIA</div>
+            </div>
+            <img src="/login-assets/img/logo.PCP.jpg" alt="PCP SISTEMAS" class="footer-logo">
+        </div>
+        <hr class="footer-divider">
+        <div class="footer-bottom">
+            2026 | Gerencia NCSR <span class="bar">|</span>
+            <a href="#">All rights reserved.</a>
+        </div>
+    </footer>
+
+    <script src="/login-assets/weather.js"></script>
+    <script>
+        const TOKEN_KEY = "grd_auth_token";
+        const USER_KEY = "grd_auth_user";
+
+        async function validarSessaoAtual() {
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (!token) return;
+
+            try {
+                const response = await fetch("/api/auth/me", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    window.location.href = "/app/";
+                }
+            } catch (error) {
+                console.error("Falha ao validar sessao:", error);
+            }
+        }
+
+        function exibirMensagem(texto) {
+            const mensagem = document.getElementById("loginMessage");
+            if (!mensagem) return;
+
+            mensagem.textContent = texto;
+            mensagem.style.display = "block";
+        }
+
+        async function lerRespostaSegura(response) {
+            const texto = await response.text();
+
+            if (!texto) {
+                return {};
+            }
+
+            try {
+                return JSON.parse(texto);
+            } catch (error) {
+                throw new Error("O servidor respondeu em um formato invalido.");
+            }
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            if (!email || !password) {
+                exibirMensagem("Por favor, preencha email e senha.");
+                return;
+            }
+
+            try {
+                const response = await fetch("/api/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const resultado = await lerRespostaSegura(response);
+
+                if (!response.ok) {
+                    throw new Error(resultado.mensagem || "Nao foi possivel entrar.");
+                }
+
+                localStorage.setItem(TOKEN_KEY, resultado.token);
+                localStorage.setItem(USER_KEY, JSON.stringify(resultado.usuario));
+                window.location.href = "/app/";
+            } catch (error) {
+                console.error("Erro no login:", error);
+                exibirMensagem(error.message || "Falha ao realizar login.");
+            }
+        });
+
+        validarSessaoAtual();
+    </script>
+</body>
+</html>

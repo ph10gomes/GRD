@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Spartan:wght@100..900&family=Outfit:wght@100..900&family=Zen+Dots&display=swap');
+
+body {
+    min-height: 100vh;
+    background-image: url(img/eletricistas.jpg);
+    background-size: 450px 550px;
+    background-position: center left;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.titulo-erp {
+    text-align: center;
+    font-size: 56px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    color: #2537daf1;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0,0,0,0.1));
+}
+
+.login-box {
+    width: 340px;
+    background: linear-gradient(135deg, #3576b7 60%, #285a8c 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 28px 32px 24px 32px;
+    margin: 0 auto 0 auto; /* Centralizado logo abaixo do título */
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-box h2 {
+    margin: 0 0 6px 0;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.login-subtitle {
+    font-size: 13px;
+    margin-bottom: 18px;
+    color: #e0e0e0;
+}
+
+.login-box label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.login-box input[type="email"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 7px 8px;
+    margin-bottom: 14px;
+    border: none;
+    border-radius: 3px;
+    background: #e9f0f7;
+    color: #222;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.login-options label {
+    color: #fff;
+    font-size: 13px;
+}
+
+.login-options .forgot {
+    color: #e0e0e0;
+    text-decoration: underline;
+    font-size: 13px;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 8px 0;
+    background: #4ea1f7;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.login-box button:hover {
+    background: #3576b7;
+}
+
+footer {
+    background-color: #0d4171; /* azul escuro */
+    margin-top: auto;
+    padding: 0;
+}
+
+.footer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+}
+
+.footer-logo {
+    height: 40px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+    filter: drop-shadow(0 2px 8px #000a);
+    background: #fff2;
+    border-radius: 8px;
+    padding: 3px 10px;
+    box-sizing: content-box;
+    transition: filter 0.2s, background 0.2s;
+}
+.footer-logo:hover {
+    filter: drop-shadow(0 4px 16px #000c) brightness(1.1);
+    background: #fff4;
+}
+
+.footer-center {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+}
+
+.footer-compromisso {
+    font-size: 12px;
+    margin-bottom: 2px;
+    margin-top: 8px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    font-family: 'League Spartan', sans-serif;
+}
+
+.footer-nome,
+#p2 {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 4px 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.footer-divider {
+    border: none;
+    border-top: 1px solid #fff;
+    margin: 4px 30px 0 30px;
+}
+
+.footer-bottom {
+    text-align: center;
+    color: #fff;
+    font-size: 13px;
+    padding: 4px 0 8px 0;
+}
+
+.footer-bottom a {
+    color: #fff;
+    text-decoration: underline;
+    margin: 0 5px;
+}
+
+.footer-bottom .bar {
+    margin: 0 8px;
+    color: #fff;
+}
+
+/* Container de clima */
+.weather-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Partículas base - REMOVA animação aqui para evitar conflitos */
+.weather-container div {
+    position: absolute;
+    /* animation: fall 2s linear infinite;  <-- Removido */
+}
+
+/* Dia Ensolarado: Raios de sol (linhas amarelas) */
+.weather-container.sunny div {
+    width: 4px;
+    height: 50px;
+    background: linear-gradient(to bottom, #ffd700, 0.9); /* Mais opaco */
+    transform-origin: top;
+    animation: shine 3s ease-in-out infinite;
+}
+
+.weather-container.sunny div:nth-child(1) { left: 10%; animation-delay: 0s; }
+.weather-container.sunny div:nth-child(2) { left: 30%; animation-delay: 1s; }
+.weather-container.sunny div:nth-child(3) { left: 50%; animation-delay: 2s; }
+
+@keyframes shine {
+    0%, 100% { opacity: 0; transform: scaleY(0); }
+    50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* Dia Nublado: Nuvens (círculos brancos) */
+.weather-container.cloudy div {
+    width: 60px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8); /* Mais opaco */
+    border-radius: 50%;
+    animation: drift 5s linear infinite;
+}
+
+.weather-container.cloudy div:nth-child(1) { top: 10%; left: 20%; }
+.weather-container.cloudy div:nth-child(2) { top: 20%; left: 60%; animation-delay: 2s; }
+
+@keyframes drift {
+    0% { transform: translateX(-100vw); }
+    100% { transform: translateX(100vw); }
+}
+
+/* Noite: Estrelas (pontos brancos piscando) */
+.weather-container.night div {
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.weather-container.night div:nth-child(1) { top: 20%; left: 15%; }
+.weather-container.night div:nth-child(2) { top: 30%; left: 45%; animation-delay: 1s; }
+.weather-container.night div:nth-child(3) { top: 40%; left: 75%; animation-delay: 0.5s; }
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Dia Chuvoso: Chuva (linhas azuis) */
+.weather-container.rainy div {
+    width: 2px;
+    height: 20px;
+    background: rgba(0, 150, 255, 0.9); /* Mais opaco */
+    animation: fall 1s linear infinite;
+}
+
+.weather-container.rainy div:nth-child(1) { left: 10%; animation-delay: 0s; }
+.weather-container.rainy div:nth-child(2) { left: 25%; animation-delay: 0.2s; }
+.weather-container.rainy div:nth-child(3) { left: 40%; animation-delay: 0.4s; }
+.weather-container.rainy div:nth-child(4) { left: 55%; animation-delay: 0.6s; }
+.weather-container.rainy div:nth-child(5) { left: 70%; animation-delay: 0.8s; }
+
+@keyframes fall {
+    0% { transform: translateY(-100vh); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
